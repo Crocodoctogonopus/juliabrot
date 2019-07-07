@@ -6,7 +6,6 @@ extern crate nalgebra;
 use ezgl::*;
 use glutin::dpi::*;
 use glutin::Event::WindowEvent;
-use glutin::Event::*;
 use glutin::*;
 use nalgebra::*;
 use std::path::*;
@@ -26,8 +25,6 @@ fn main() {
 
     // build gl context
     unsafe {
-        use crate::glutin::GlContext;
-
         window.make_current().unwrap();
         gl::load_with(|symbol| window.get_proc_address(symbol) as *const _);
         gl::ClearColor(0., 0., 0., 1.);
@@ -148,17 +145,6 @@ fn main() {
 
         // unif
         let mandel_trans = {
-            // create ortho
-            let matrix = Matrix4::new_translation(&offset);
-            let matrix = matrix * Matrix4::new_scaling(scale);
-
-            // return it
-            let mut t = Mat4([0.; 16]);
-            t.0.clone_from_slice(matrix.as_slice());
-            GLSLAny::Mat4(t)
-        };
-
-        let julia_trans = {
             // create ortho
             let matrix = Matrix4::new_translation(&offset);
             let matrix = matrix * Matrix4::new_scaling(scale);
