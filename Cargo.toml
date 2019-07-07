@@ -1,0 +1,11 @@
+[package]
+name = "juliabrot"
+version = "0.1.0"
+authors = ["Akourne Bursche <Crocodoctopus@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+gl = "0.10.0"
+ezgl = { git = "https://github.com/Crocodoctogonopus/Ezgl" }
+glutin = "0.19.0"
+nalgebra = "0.18.0"
