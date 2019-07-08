@@ -68,7 +68,7 @@ fn main() {
     // state
     let mut scale = 0.25;
     let mut offset = Vector3::new(-1.25, 0., 0.);
-    let mut quality = 500.;
+    let mut quality = 1000.;
 
     let mut up = false;
     let mut down = false;

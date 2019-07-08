@@ -24,7 +24,7 @@ void main() {
     if (iter_max == iter) {
     	rgba = vec4(0., 0., 0., 1.);
     } else {
-    	float rr = (float(iter) + 5)/(float(iter_max) + 5);
-		rgba = vec4(rr, 0., 0., 1.);
+    	float r = (float(iter) + 250)/(float(iter_max) + 250);
+		rgba = vec4(r, 0., 0., 1.);
     }
 }

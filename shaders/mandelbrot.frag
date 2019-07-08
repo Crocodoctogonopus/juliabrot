@@ -26,10 +26,7 @@ void main() {
     if (iter_max == iter) {
     	rgba = vec4(0., 0, 0, 1.);
     } else {
-    	float r = (float(iter) + 5)/(float(iter_max) + 5);
+    	float r = (float(iter) + 250)/(float(iter_max) + 250);
 		rgba = vec4(r, 0., 0., 1.);
     }
 }
-
-// 40ms, 43ms, 41ms, 36ms
-// 51ms, 57ms, 50ms, 45ms
