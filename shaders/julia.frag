@@ -4,23 +4,20 @@ in vec2 frag_uv;
 
 out vec4 rgba;
 
-layout(location = 1) uniform vec2 julia_c;
+layout(location = 0) uniform vec2 julia_c;
+layout(location = 1) uniform int iter_max;
 
 void main() {
-	// our point
-	dvec2 c = dvec2(0., 0.);
-
 	// iter
-	int iter_max = 75;
 	int iter = 0;
-    dvec2 z = frag_uv;
+    vec2 z = frag_uv;
     for(iter = 0; iter < iter_max; iter++) {
-        double x = (z.x * z.x - z.y * z.y) + julia_c.x;
-        double y = (z.y * z.x + z.x * z.y) + julia_c.y;
+        float x = z.x * z.x - z.y * z.y + julia_c.x;
+        float y = 2 * z.x * z.y + julia_c.y;
 
         if((x * x + y * y) > 4.0) 
         	break;
-        z = dvec2(x, y);
+        z = vec2(x, y);
     }
 
     // output
