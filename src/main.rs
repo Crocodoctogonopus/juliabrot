@@ -161,29 +161,25 @@ fn main() {
             // create ortho
             let matrix = Matrix4::new_translation(&offset);
             let matrix = matrix * Matrix4::new_scaling(scale);
-
-            // return it
-            let mut t = Mat4([0.; 16]);
-            t.0.clone_from_slice(matrix.as_slice());
-            GLSLAny::Mat4(t)
+            matrix
         };
 
         unsafe {
             gl::Clear(gl::COLOR_BUFFER_BIT | gl::DEPTH_BUFFER_BIT);
         }
 
-        InstantDraw::start_tri_draw(2, &mandel_prog, &ibo)
+        Draw::start_tri_draw(2, &mandel_prog, &ibo)
             .with_buffer(&mandel_verts, 0)
             .with_buffer(&mandel_view, 1)
-            .with_uniform(mandel_trans, 0)
-            .with_uniform(GLSLAny::Int(quality as i32), 1)
+            .with_uniform(mandel_trans.as_ref() as &[[f32; 4]; 4], 0)
+            .with_uniform(&(quality as i32), 1)
             .draw();
 
-        InstantDraw::start_tri_draw(2, &julia_prog, &ibo)
+        Draw::start_tri_draw(2, &julia_prog, &ibo)
             .with_buffer(&julia_verts, 0)
             .with_buffer(&julia_view, 1)
-            .with_uniform(GLSLAny::Vec2((offset.x, offset.y)), 0)
-            .with_uniform(GLSLAny::Int(quality as i32), 1)
+            .with_uniform(&(offset.x, offset.y), 0)
+            .with_uniform(&(quality as i32), 1)
             .draw();
 
         window.swap_buffers().unwrap();
